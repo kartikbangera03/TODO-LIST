@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Todo List WebApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="runtime.bundle.js"></script>
+    <script defer src="main.bundle.js"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- <img src="../src/todo-list.png"> -->
+        <h1>TODO LIST</h1>
+    </div>
+    <div class="container">
+        <div class="sideBar">
+            <!-- <button id="addProject">Add Project</button> -->
+        </div>
+        <div class="mainContainer">
+            <div class="taskContainer"></div>
+            <div class="taskDetails"></div>
+        </div>
+    </div>
+
+    <dialog id="projectModal">
+        <form id="projectForm">
+            <p>
+                <label for="projectName">Enter Project Name</label><br>
+                <input type="text" id="projectName" name="projectName"><br>
+            </p>
+            <div>
+                <button id="closeProjectModal" value="cancel" formmethod="dialog">Cancel</button>
+                <button type="submit" id="addProject">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="taskModal">
+        <form id="taskForm" method="dialog">
+            <p>
+                <label for="title">Title</label><br>
+                <input type="text" id="title" name="title"><br>
+            </p>
+            <p>
+                <label for="description">Description</label><br>
+                <!-- <input type="text" id="description" name="description"><br> -->
+                <textarea id="description" name="description" rows="10" cols="40"></textarea>
+            </p>
+            <p>
+                <label for="dueDate">Due Date</label><br>
+                <input type="date" id="dueDate" name="dueDate"><br>
+
+            </p>
+            <p>
+                <label for="priority">Priority</label><br>
+                <select id="priority" name="priority">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </p>
+            <div>
+                <button id="closeTaskModal" value="cancel" formmethod="dialog">Cancel</button>
+                <button type="submit" id="confirmTaskBtn">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+
+</html>
