@@ -1,5 +1,5 @@
 import tf from "./taskFuntions";
-import { isToday, isTomorrow, isThisWeek } from "date-fns";
+import { isToday, isTomorrow, isThisWeek, format } from "date-fns";
 
 const displayTask = function(task, projectIndex , taskIndex, projectName) {
 
@@ -37,7 +37,7 @@ const displayTask = function(task, projectIndex , taskIndex, projectName) {
     let s = "";
     if (isToday(task.dueDate)) s = "Today";
     else if (isTomorrow(task.dueDate)) s = "Tomorrow";
-    else s = task.dueDate;
+    else s = format(task.dueDate,'dd-MMM-yy');
     myDueDate.innerText = s;
     const myPriority = document.createElement("p");
     myPriority.classList.add("taskPriority")
@@ -59,32 +59,31 @@ const displayTask = function(task, projectIndex , taskIndex, projectName) {
 
     const showDetails = document.createElement("button");
     showDetails.setAttribute("id", "task" + "-" + projectIndex + "-" + taskIndex);
-    showDetails.classList.add("showDetailsPara");
+    showDetails.classList.add("showDetailsButton");
     showDetails.innerText = "Show Details";
     showDetails.addEventListener("click", ()=>{
-        console.log(`Show Details of ${projectIndex} ${taskIndex}`);
+            
+        tf.showDescription(projectIndex, taskIndex);
+
     });
     myDiv.appendChild(showDetails);
 
     const deleteButton  = document.createElement("button");
-    deleteButton.innerText = "Delete";   
+    deleteButton.innerText = "Delete"; 
     deleteButton.setAttribute('id', "deleteTaskButton" + "-" + + projectIndex + "-" + taskIndex);
+    deleteButton.classList.add("deleteTaskButton");
     deleteButton.addEventListener("click", ()=>{
         console.log(`Delete Task ${projectIndex} ${taskIndex}`);
         tf.removeTask(projectIndex,taskIndex);
         renderTaskContainer(projectName);
     });
-    deleteButton.classList.add("deleteButton");
+    
 
     myDiv.appendChild(deleteButton);
 
     const taskContainer = document.querySelector(".taskContainer");
     taskContainer.appendChild(myDiv);
 }
-
-
-
-
 
 
 const renderTaskContainer = function(projectName){
@@ -111,7 +110,7 @@ const renderTaskContainer = function(projectName){
     myHeadingDiv.appendChild(heading);
 
     const addTaskButton = document.createElement("button");
-    addTaskButton.innerText = " + Add Task ";
+    addTaskButton.innerText = " + ADD TASK ";
     addTaskButton.setAttribute('id', `addTaskButton-${index}`);
     addTaskButton.addEventListener("click", (e)=>{
         // e.preventDefault();
@@ -139,6 +138,44 @@ const renderTaskContainer = function(projectName){
 
 }
 
+
+const renderDateFilter = function(filterName){
+    console.log(`${filterName} Clicked`);
+    const taskContainer = document.querySelector(".taskContainer");
+    const localStoredProjectArray = JSON.parse(localStorage.getItem("projects"));
+
+    while (taskContainer.firstChild) {
+        taskContainer.removeChild(taskContainer.firstChild);
+    }
+
+    const myHeadingDiv = document.createElement("div");
+    myHeadingDiv.classList.add("taskHeading");
+    const heading = document.createElement("h1");
+    heading.innerText = filterName;
+
+    myHeadingDiv.appendChild(heading);
+    taskContainer.appendChild(myHeadingDiv);
+    let filter ;
+    if(filterName === "Today") filter = isToday;
+    else if(filterName === "Tomorrow") filter = isTomorrow;
+    else if(filterName === "ThisWeek") filter = isThisWeek;
+
+    for(let projectIndex  = 0 ; projectIndex < localStoredProjectArray.length ; projectIndex ++){       
+        const projectObj = localStoredProjectArray[projectIndex];  
+        const projectName = localStoredProjectArray[projectIndex].projectName;
+        for( let taskIndex = 0 ; taskIndex < projectObj.taskList.length ; taskIndex++){
+            const taskObj = projectObj.taskList[taskIndex];
+            if(filter(taskObj.dueDate)){
+                // console.log(`Display Task Index : ${taskIndex}`);
+                displayTask(taskObj, projectIndex,taskIndex,projectName);           
+            }
+        }      
+    }   
+}
+
+
+
 export default {
-    renderTaskContainer
+    renderTaskContainer,
+    renderDateFilter
 }

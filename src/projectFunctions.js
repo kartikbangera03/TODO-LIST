@@ -1,5 +1,6 @@
 import dom from "./domManipSideBar";
 import domtf from "./domManipTaskContainer"
+import tf from "./taskFuntions"
 
 function createProjectObj(projectName) {
     console.log(typeof projectName);
@@ -22,12 +23,6 @@ const removeProject = function(projectName){
         localStoredProjectArray.splice(index,1);
         localStorage.setItem("projects", JSON.stringify(localStoredProjectArray));
     }
-    // Check For Mistakes
-    // index -= 1;
-    // const updatedProjectName = localStoredProjectArray[index].projectName;
-    // console.log(`After Deleting Project , Show Tasks of ${updatedProjectName}`);
-    // domtf.renderTaskContainer(updatedProjectName);
-    // dom.renderSideBar();
 
 }
 
@@ -38,6 +33,7 @@ const createDefaultProject = function (projectName) {
     projectArray.push(newProjectObj)
     localStorage.setItem("projects", JSON.stringify(projectArray));
     dom.renderSideBar();
+    tf.createDefaultTasksForDefaultProject();
 }
 
 const addProjectToStorage = function (projectName) {

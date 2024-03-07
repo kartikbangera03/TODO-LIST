@@ -1,47 +1,93 @@
+:root{
+    --text: black;
+    --background: #FFFFFF;
+    --primary: #1f2833;
+    --secondary: ;
+    --accent: #45A29E;
+}
+
+
+
 body{
+    padding: 0px;
     margin: 0;
+    font-family: sans-serif;
+    font-weight: 500;
+    height: 80%;
+    background-color: var(--background);
+    color: var(--text);
+    overflow: hidden;
 }
 
-
-button {
-    width: 200px;
-}
 .container{
     display: flex;
 }
 
 .sideBar{
-    border: 1px solid black;
-    width: 30vw;
+    /* border: 1px solid black; */
+    padding-top: 10px;
+    width: 25vw;
     height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: end;
     padding-right: 10px;
+    padding-left: 50px;
+
+    /* background-color: var(--secondary); */
 }
 
 .projectCard{
     display: flex;
     width:  300px;
-    justify-content: start;
+    justify-content: flex-end;
     margin-bottom: 20px;
+    gap: 20px;
+    
+
 }
 
-.deleteProjectButton, .deleteTaskButton, .addTaskButton{
-    width: 75px;
+.projectButton{
+    box-shadow: 2px 2px 1px lightgray;
+    width: 140px;
+    height: 33px;
+    font-weight: bolder;
+    text-wrap: nowrap;
+    overflow: hidden;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    
+    /* color: var(--text); */
+    background-color: #C5C6C7;
 }
+
 
 .nav{
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
     padding-left: 20px;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 3px 3px #888888;
 }
 
 .taskContainer{
-    border: 1px solid black;
-    width:50vw;
+    border: 3px solid grey;
+    width:42vw;
     height: 90vh;
     margin-left: 10px;
     padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    /* padding-left: 50px; */
+    
+
+
+    
 }
 .taskHeading{
     display: flex;
@@ -53,9 +99,135 @@ button {
 
 .taskCard{
     display: flex;
-    gap: 15px;
-    justify-content: space-between;
+    gap: 25px;
     margin-bottom: 20px;
+margin-left: 50px;
     padding-left: 15px;
     padding-right: 15px;
+    height: 50px;
+    width: 650px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 5px 5px 5px lightgray;
+
+}
+
+.taskOver{
+    background-color: lightgray;
+    text-decoration-line: line-through;
+}
+
+.showDetailsButton, .deleteTaskButton , .deleteProjectButton{
+    width: 60px;
+    border-radius: 10px;
+    background-color: rgb(134, 133, 133);
+    border: none;
+    color: #ffffff;
+}
+
+.taskPriority , .taskDueDate{
+    width: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.taskTitle{
+    flex-grow: 1;
+    /* border: 1px solid black; */
+}
+
+.taskHeading{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addTaskButton , .addProjectButton {
+    background-color: dodgerblue;
+    border: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    width: 100px;
+    height: 50px;
+    border-radius: 15px;
+}
+
+.projectHeading{
+    margin-top: 20px;
+}
+
+.projectButton:hover{
+    width: 143px;
+    background-color: grey;
+    cursor: pointer;
+   
+}
+
+.addTaskButton:hover , .addProjectButton:hover , #closeProjectModal:hover , #addProject:hover, #closeTaskModal:hover , #confirmTaskBtn:hover{
+ background-color:blue ;
+ cursor: pointer;
+}    
+
+.showDetailsButton:hover, .deleteTaskButton:hover , .deleteProjectButton:hover{
+    background-color: rgb(88, 88, 88);
+    cursor: pointer;
+    
+}
+
+
+input[type=text] {
+    border-radius: 4px;
+    padding: 10px 10px;
+    border: 1px solid #ccc;
+    width: 320px;
+}
+#description {
+    height: 100px;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+
+dialog {
+
+    border-radius: 15px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    padding-top: 10px;
+
+}
+
+#closeProjectModal , #addProject, #closeTaskModal , #confirmTaskBtn{
+    background-color: dodgerblue;
+    border: none;
+    color: #FFFFFF;
+    font-weight: bold;
+    width: 100px;
+    height: 35px;
+    border-radius: 15px;
+}
+
+.descriptionModal {
+
+    display: flex;
+    width: 300px;
+}
+
+
+#descriptionModal{
+    display: flex;
+    justify-content: space-between;
+    height: 100px;
+    width: 200px;
+}
+
+#closeDescription{
+    height: 30px;
+    
+    border: 4px solid black;
+}
+
+#closeDescription:hover{
+   background-color: grey;
+    
 }

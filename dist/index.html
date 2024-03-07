@@ -11,13 +11,10 @@
 
 <body>
     <div class="nav">
-        <!-- <img src="../src/todo-list.png"> -->
         <h1>TODO LIST</h1>
     </div>
     <div class="container">
-        <div class="sideBar">
-            <!-- <button id="addProject">Add Project</button> -->
-        </div>
+        <div class="sideBar"></div>
         <div class="mainContainer">
             <div class="taskContainer"></div>
             <div class="taskDetails"></div>
@@ -28,7 +25,7 @@
         <form id="projectForm">
             <p>
                 <label for="projectName">Enter Project Name</label><br>
-                <input type="text" id="projectName" name="projectName"><br>
+                <input type="text" id="projectName" name="projectName" required><br>
             </p>
             <div>
                 <button id="closeProjectModal" value="cancel" formmethod="dialog">Cancel</button>
@@ -41,7 +38,7 @@
         <form id="taskForm" method="dialog">
             <p>
                 <label for="title">Title</label><br>
-                <input type="text" id="title" name="title"><br>
+                <input type="text" id="title" name="title" required><br>
             </p>
             <p>
                 <label for="description">Description</label><br>
@@ -50,12 +47,12 @@
             </p>
             <p>
                 <label for="dueDate">Due Date</label><br>
-                <input type="date" id="dueDate" name="dueDate"><br>
+                <input type="date" id="dueDate" name="dueDate" required><br>
 
             </p>
             <p>
                 <label for="priority">Priority</label><br>
-                <select id="priority" name="priority">
+                <select id="priority" name="priority" required>
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>
@@ -66,6 +63,10 @@
                 <button type="submit" id="confirmTaskBtn">Confirm</button>
             </div>
         </form>
+    </dialog>
+    <dialog id="descriptionModal">
+        <span id="descriptionSpan"></span>
+        <button id="closeDescription" class="closeButton">X</button>
     </dialog>
 </body>
 
